@@ -32,7 +32,7 @@ public interface I_GH_StructurePosition
     /** TableName=GH_StructurePosition */
     public static final String Table_Name = "GH_StructurePosition";
 
-    /** AD_Table_ID=1000069 */
+    /** AD_Table_ID=1000057 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);

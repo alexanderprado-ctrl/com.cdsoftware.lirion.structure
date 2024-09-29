@@ -32,7 +32,7 @@ public class X_GH_StructurePosition extends PO implements I_GH_StructurePosition
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20240905L;
+	private static final long serialVersionUID = 20240918L;
 
     /** Standard Constructor */
     public X_GH_StructurePosition (Properties ctx, int GH_StructurePosition_ID, String trxName)

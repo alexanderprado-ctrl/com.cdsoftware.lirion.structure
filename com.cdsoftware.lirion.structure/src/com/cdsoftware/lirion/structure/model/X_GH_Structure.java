@@ -33,7 +33,7 @@ public class X_GH_Structure extends PO implements I_GH_Structure, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20240905L;
+	private static final long serialVersionUID = 20240918L;
 
     /** Standard Constructor */
     public X_GH_Structure (Properties ctx, int GH_Structure_ID, String trxName)
@@ -41,7 +41,16 @@ public class X_GH_Structure extends PO implements I_GH_Structure, I_Persistent
       super (ctx, GH_Structure_ID, trxName);
       /** if (GH_Structure_ID == 0)
         {
+			setC_Year_ID (0);
+			setGH_Activity (null);
+			setGH_BudgetType (null);
+			setGH_ExpenseObject_ID (0);
+			setGH_PayrollStatus_ID (0);
+			setGH_Program (null);
+			setGH_Source (null);
 			setGH_Structure_ID (0);
+			setGH_StructurePosition_ID (0);
+			setGH_SubProgram (null);
 			setValue (null);
         } */
     }
@@ -52,7 +61,16 @@ public class X_GH_Structure extends PO implements I_GH_Structure, I_Persistent
       super (ctx, GH_Structure_ID, trxName, virtualColumns);
       /** if (GH_Structure_ID == 0)
         {
+			setC_Year_ID (0);
+			setGH_Activity (null);
+			setGH_BudgetType (null);
+			setGH_ExpenseObject_ID (0);
+			setGH_PayrollStatus_ID (0);
+			setGH_Program (null);
+			setGH_Source (null);
 			setGH_Structure_ID (0);
+			setGH_StructurePosition_ID (0);
+			setGH_SubProgram (null);
 			setValue (null);
         } */
     }
