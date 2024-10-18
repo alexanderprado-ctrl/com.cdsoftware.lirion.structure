@@ -32,7 +32,7 @@ public interface I_HR_ContractTypeEmployee
     /** TableName=HR_ContractTypeEmployee */
     public static final String Table_Name = "HR_ContractTypeEmployee";
 
-    /** AD_Table_ID=1000076 */
+    /** AD_Table_ID=1000082 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -93,6 +93,15 @@ public interface I_HR_ContractTypeEmployee
 	public int getC_DocType_ID();
 
 	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
+
+    /** Column name CDS_Status */
+    public static final String COLUMNNAME_CDS_Status = "CDS_Status";
+
+	/** Set Status	  */
+	public void setCDS_Status (String CDS_Status);
+
+	/** Get Status	  */
+	public String getCDS_Status();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -193,7 +202,14 @@ public interface I_HR_ContractTypeEmployee
 	/** Get Expense Object	  */
 	public int getGH_ExpenseObject_ID();
 
-	public I_GH_ExpenseObject getGH_ExpenseObject() throws RuntimeException;
+    /** Column name GH_Structure_ID */
+    public static final String COLUMNNAME_GH_Structure_ID = "GH_Structure_ID";
+
+	/** Set Structure	  */
+	public void setGH_Structure_ID (int GH_Structure_ID);
+
+	/** Get Structure	  */
+	public int getGH_Structure_ID();
 
     /** Column name HR_ContractClasification_ID */
     public static final String COLUMNNAME_HR_ContractClasification_ID = "HR_ContractClasification_ID";
@@ -212,8 +228,6 @@ public interface I_HR_ContractTypeEmployee
 
 	/** Get HR_ContractTypeCategory	  */
 	public int getHR_ContractTypeCategory_ID();
-
-	public I_HR_ContractTypeCategory getHR_ContractTypeCategory() throws RuntimeException;
 
     /** Column name HR_ContractTypeEmployee_ID */
     public static final String COLUMNNAME_HR_ContractTypeEmployee_ID = "HR_ContractTypeEmployee_ID";
@@ -251,7 +265,27 @@ public interface I_HR_ContractTypeEmployee
 	/** Get HR_ContractTypeSubCategory	  */
 	public int getHR_ContractTypeSubCategory_ID();
 
-	public I_HR_ContractTypeSubCategory getHR_ContractTypeSubCategory() throws RuntimeException;
+    /** Column name HR_Department_ID */
+    public static final String COLUMNNAME_HR_Department_ID = "HR_Department_ID";
+
+	/** Set Payroll Department	  */
+	public void setHR_Department_ID (int HR_Department_ID);
+
+	/** Get Payroll Department	  */
+	public int getHR_Department_ID();
+
+	public org.eevolution.model.I_HR_Department getHR_Department() throws RuntimeException;
+
+    /** Column name HR_Job_ID */
+    public static final String COLUMNNAME_HR_Job_ID = "HR_Job_ID";
+
+	/** Set Payroll Job	  */
+	public void setHR_Job_ID (int HR_Job_ID);
+
+	/** Get Payroll Job	  */
+	public int getHR_Job_ID();
+
+	public org.eevolution.model.I_HR_Job getHR_Job() throws RuntimeException;
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -294,4 +328,10 @@ public interface I_HR_ContractTypeEmployee
 	  * Search key for the record in the format required - must be unique
 	  */
 	public String getValue();
+
+	I_GH_ExpenseObject getGH_ExpenseObject() throws RuntimeException;
+
+	I_HR_ContractTypeCategory getHR_ContractTypeCategory() throws RuntimeException;
+
+	I_HR_ContractTypeSubCategory getHR_ContractTypeSubCategory() throws RuntimeException;
 }

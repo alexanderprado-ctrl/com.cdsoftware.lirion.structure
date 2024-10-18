@@ -32,7 +32,7 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20240905L;
+	private static final long serialVersionUID = 20241017L;
 
     /** Standard Constructor */
     public X_HR_ContractTypeEmployee (Properties ctx, int HR_ContractTypeEmployee_ID, String trxName)
@@ -41,7 +41,6 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
       /** if (HR_ContractTypeEmployee_ID == 0)
         {
 			setHR_ContractTypeEmployee_ID (0);
-			setHR_ContractType_ID (0);
         } */
     }
 
@@ -52,7 +51,6 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
       /** if (HR_ContractTypeEmployee_ID == 0)
         {
 			setHR_ContractTypeEmployee_ID (0);
-			setHR_ContractType_ID (0);
         } */
     }
 
@@ -134,6 +132,30 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Eventual = EVE */
+	public static final String CDS_STATUS_Eventual = "EVE";
+	/** Interim = INT */
+	public static final String CDS_STATUS_Interim = "INT";
+	/** Permanent = PER */
+	public static final String CDS_STATUS_Permanent = "PER";
+	/** Professional Services = PRO */
+	public static final String CDS_STATUS_ProfessionalServices = "PRO";
+	/** Set Status.
+		@param CDS_Status Status
+	*/
+	public void setCDS_Status (String CDS_Status)
+	{
+
+		set_Value (COLUMNNAME_CDS_Status, CDS_Status);
+	}
+
+	/** Get Status.
+		@return Status	  */
+	public String getCDS_Status()
+	{
+		return (String)get_Value(COLUMNNAME_CDS_Status);
 	}
 
 	/** Set Document Date.
@@ -235,21 +257,15 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 		return ii.intValue();
 	}
 
-	public I_GH_ExpenseObject getGH_ExpenseObject() throws RuntimeException
-	{
-		return (I_GH_ExpenseObject)MTable.get(getCtx(), I_GH_ExpenseObject.Table_ID)
-			.getPO(getGH_ExpenseObject_ID(), get_TrxName());
-	}
-
 	/** Set Expense Object.
 		@param GH_ExpenseObject_ID Expense Object
 	*/
 	public void setGH_ExpenseObject_ID (int GH_ExpenseObject_ID)
 	{
 		if (GH_ExpenseObject_ID < 1)
-			set_ValueNoCheck (COLUMNNAME_GH_ExpenseObject_ID, null);
+			set_Value (COLUMNNAME_GH_ExpenseObject_ID, null);
 		else
-			set_ValueNoCheck (COLUMNNAME_GH_ExpenseObject_ID, Integer.valueOf(GH_ExpenseObject_ID));
+			set_Value (COLUMNNAME_GH_ExpenseObject_ID, Integer.valueOf(GH_ExpenseObject_ID));
 	}
 
 	/** Get Expense Object.
@@ -257,6 +273,27 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 	public int getGH_ExpenseObject_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_GH_ExpenseObject_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Structure.
+		@param GH_Structure_ID Structure
+	*/
+	public void setGH_Structure_ID (int GH_Structure_ID)
+	{
+		if (GH_Structure_ID < 1)
+			set_Value (COLUMNNAME_GH_Structure_ID, null);
+		else
+			set_Value (COLUMNNAME_GH_Structure_ID, Integer.valueOf(GH_Structure_ID));
+	}
+
+	/** Get Structure.
+		@return Structure	  */
+	public int getGH_Structure_ID()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_GH_Structure_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -281,12 +318,6 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	public I_HR_ContractTypeCategory getHR_ContractTypeCategory() throws RuntimeException
-	{
-		return (I_HR_ContractTypeCategory)MTable.get(getCtx(), I_HR_ContractTypeCategory.Table_ID)
-			.getPO(getHR_ContractTypeCategory_ID(), get_TrxName());
 	}
 
 	/** Set HR_ContractTypeCategory.
@@ -367,12 +398,6 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 		return ii.intValue();
 	}
 
-	public I_HR_ContractTypeSubCategory getHR_ContractTypeSubCategory() throws RuntimeException
-	{
-		return (I_HR_ContractTypeSubCategory)MTable.get(getCtx(), I_HR_ContractTypeSubCategory.Table_ID)
-			.getPO(getHR_ContractTypeSubCategory_ID(), get_TrxName());
-	}
-
 	/** Set HR_ContractTypeSubCategory.
 		@param HR_ContractTypeSubCategory_ID HR_ContractTypeSubCategory
 	*/
@@ -394,6 +419,60 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 		return ii.intValue();
 	}
 
+	public org.eevolution.model.I_HR_Department getHR_Department() throws RuntimeException
+	{
+		return (org.eevolution.model.I_HR_Department)MTable.get(getCtx(), org.eevolution.model.I_HR_Department.Table_ID)
+			.getPO(getHR_Department_ID(), get_TrxName());
+	}
+
+	/** Set Payroll Department.
+		@param HR_Department_ID Payroll Department
+	*/
+	public void setHR_Department_ID (int HR_Department_ID)
+	{
+		if (HR_Department_ID < 1)
+			set_Value (COLUMNNAME_HR_Department_ID, null);
+		else
+			set_Value (COLUMNNAME_HR_Department_ID, Integer.valueOf(HR_Department_ID));
+	}
+
+	/** Get Payroll Department.
+		@return Payroll Department	  */
+	public int getHR_Department_ID()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_HR_Department_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.model.I_HR_Job getHR_Job() throws RuntimeException
+	{
+		return (org.eevolution.model.I_HR_Job)MTable.get(getCtx(), org.eevolution.model.I_HR_Job.Table_ID)
+			.getPO(getHR_Job_ID(), get_TrxName());
+	}
+
+	/** Set Payroll Job.
+		@param HR_Job_ID Payroll Job
+	*/
+	public void setHR_Job_ID (int HR_Job_ID)
+	{
+		if (HR_Job_ID < 1)
+			set_Value (COLUMNNAME_HR_Job_ID, null);
+		else
+			set_Value (COLUMNNAME_HR_Job_ID, Integer.valueOf(HR_Job_ID));
+	}
+
+	/** Get Payroll Job.
+		@return Payroll Job	  */
+	public int getHR_Job_ID()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_HR_Job_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Search Key.
 		@param Value Search key for the record in the format required - must be unique
 	*/
@@ -408,5 +487,23 @@ public class X_HR_ContractTypeEmployee extends PO implements I_HR_ContractTypeEm
 	public String getValue()
 	{
 		return (String)get_Value(COLUMNNAME_Value);
+	}
+
+	@Override
+	public I_GH_ExpenseObject getGH_ExpenseObject() throws RuntimeException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public I_HR_ContractTypeCategory getHR_ContractTypeCategory() throws RuntimeException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public I_HR_ContractTypeSubCategory getHR_ContractTypeSubCategory() throws RuntimeException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
