@@ -34,8 +34,9 @@ public class UpdateSpecialContractFields extends CustomCallout{
 		
 		totalcontractamount = hourcost.multiply(new BigDecimal(hourqty)).multiply(new BigDecimal(weeksqty));
 		mTab.setValue("totalcontractamountnumeric", totalcontractamount);
-		
-		mTab.setValue("totalpaymentnumeric", totalcontractamount.divide(new BigDecimal(paymentqty), 2, RoundingMode.HALF_UP));
+		if(paymentqty!=0) {
+			mTab.setValue("totalpaymentnumeric", totalcontractamount.divide(new BigDecimal(paymentqty), 2, RoundingMode.HALF_UP));	
+		}		
 		mTab.setValue("fiscalstampamountnumeric", totalcontractamount.divide(Env.ONEHUNDRED, 2, RoundingMode.HALF_UP).multiply(new BigDecimal("0.1")));
 		
 		mTab.setValue("hourlycosttext", DB.getSQLValueString(null, "SELECT f_convnl(?)",hourcost));
