@@ -26,6 +26,7 @@ public class UpdateSpecialContractFields extends CustomCallout{
 		
 		BigDecimal totalcontractamount= Env.ZERO,hourcost=Env.ZERO;
 		int hourqty=0,weeksqty=0,paymentqty=0;
+		String moneda="BALBOAS CON";
 		hourcost = (BigDecimal)(mTab.getValue("hourlycostnumeric")!=null?mTab.getValue("hourlycostnumeric"):Env.ZERO);
 		//hourqty = (int)(mTab.getValue("hoursnumeric")!=null?mTab.getValue("hoursnumeric"):0);
 		hourqty=(int)mTab.getValue("hoursnumeric");
@@ -37,15 +38,15 @@ public class UpdateSpecialContractFields extends CustomCallout{
 		if(paymentqty!=0) {
 			mTab.setValue("totalpaymentnumeric", totalcontractamount.divide(new BigDecimal(paymentqty), 2, RoundingMode.HALF_UP));	
 		}		
-		mTab.setValue("fiscalstampamountnumeric", totalcontractamount.divide(Env.ONEHUNDRED, 2, RoundingMode.HALF_UP).multiply(new BigDecimal("0.1")));
+		mTab.setValue("fiscalstampamountnumeric", totalcontractamount.divide(Env.ONEHUNDRED, 2, RoundingMode.HALF_UP).multiply(new BigDecimal("0.1")).setScale(1, RoundingMode.HALF_UP));
 		
-		mTab.setValue("hourlycosttext", DB.getSQLValueString(null, "SELECT f_convnl(?)",hourcost));
-		mTab.setValue("hourstext", DB.getSQLValueString(null, "SELECT f_convnl(?)",hourqty));
-		mTab.setValue("weekstext", DB.getSQLValueString(null, "SELECT f_convnl(?)",weeksqty));
-		mTab.setValue("totalcontractamounttext", DB.getSQLValueString(null, "SELECT f_convnl(?)",totalcontractamount));
-		mTab.setValue("paymentcounttext", DB.getSQLValueString(null, "SELECT f_convnl(?)",paymentqty));
-		mTab.setValue("fiscalstampamounttext", DB.getSQLValueString(null, "SELECT f_convnl(?)",mTab.getValue("fiscalstampamountnumeric")));
-		mTab.setValue("totalpaymenttext", DB.getSQLValueString(null, "SELECT f_convnl(?)",mTab.getValue("totalpaymentnumeric")));
+		mTab.setValue("hourlycosttext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?,?))",hourcost,moneda));
+		mTab.setValue("hourstext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?))",hourqty));
+		mTab.setValue("weekstext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?))",weeksqty));
+		mTab.setValue("totalcontractamounttext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?,?))",totalcontractamount,moneda));
+		mTab.setValue("paymentcounttext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?))",paymentqty));
+		mTab.setValue("fiscalstampamounttext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?,?))",mTab.getValue("fiscalstampamountnumeric"),moneda));
+		mTab.setValue("totalpaymenttext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?,?))",mTab.getValue("totalpaymentnumeric"),moneda));
 		
 		
 		return "";
