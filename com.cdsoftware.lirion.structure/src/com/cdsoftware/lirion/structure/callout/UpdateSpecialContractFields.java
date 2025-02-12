@@ -13,7 +13,7 @@ import org.compiere.util.Env;
 import com.cdsoftware.lirion.structure.base.CustomCallout;
 
 @Callout(tableName = {"HR_SpecialContracts"}, 
-columnName = {"hourlycostnumeric","hoursnumeric","weeksnumeric","paymentcountnumeric"})
+columnName = {"hourlycostnumeric","hoursnumeric","weeksnumeric","paymentcountnumeric","fiscalstampamountnumeric"})
 public class UpdateSpecialContractFields extends CustomCallout{
 
 	@Override
@@ -37,8 +37,9 @@ public class UpdateSpecialContractFields extends CustomCallout{
 		mTab.setValue("totalcontractamountnumeric", totalcontractamount);
 		if(paymentqty!=0) {
 			mTab.setValue("totalpaymentnumeric", totalcontractamount.divide(new BigDecimal(paymentqty), 2, RoundingMode.HALF_UP));	
-		}		
-		mTab.setValue("fiscalstampamountnumeric", totalcontractamount.divide(Env.ONEHUNDRED, 2, RoundingMode.HALF_UP).multiply(new BigDecimal("0.1")).setScale(1, RoundingMode.HALF_UP));
+		}
+		//Cliente indica que quiere ingresar monto manualmente
+		//mTab.setValue("fiscalstampamountnumeric", totalcontractamount.divide(Env.ONEHUNDRED, 2, RoundingMode.HALF_UP).multiply(new BigDecimal("0.1")).setScale(1, RoundingMode.HALF_UP));
 		
 		mTab.setValue("hourlycosttext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?,?))",hourcost,moneda));
 		mTab.setValue("hourstext", DB.getSQLValueString(null, "SELECT UPPER(f_convnl(?))",hourqty));
