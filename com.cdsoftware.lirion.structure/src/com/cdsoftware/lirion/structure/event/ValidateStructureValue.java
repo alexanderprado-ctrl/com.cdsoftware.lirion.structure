@@ -32,7 +32,7 @@ public class ValidateStructureValue extends ModelEventDelegate<X_GH_Structure>{
 		if(record.getGH_ExpenseObject_ID() != v_representationExpenseCode) {
 			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_Structure_ID != ?",record.getC_Year_ID(),record.getValue(),record.get_ID());	
 			if(count>0)
-				throw new AdempiereException("La posición esta repetida para el año "+record.getC_Year().getFiscalYear());
+				throw new AdempiereException("La posición "+record.get_ValueAsString("GH_StructureValue")+" esta repetida para el año "+record.getC_Year().getFiscalYear());
 		}		
 		//2) La exepción a esta regla es que el objeto de gasto sea gastos de representación (030)
 		//entonces se podria crear 1 registro adicional para la Combinación Código,Año para el ODG 030
