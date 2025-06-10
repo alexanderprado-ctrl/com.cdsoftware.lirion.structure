@@ -30,7 +30,7 @@ public class ValidateStructureValue extends ModelEventDelegate<X_GH_Structure>{
 		//Son 2 casos a tomar en cuenta
 		//1) Para un mismo año no puede repetirse la combinación Código,Año
 		if(record.getGH_ExpenseObject_ID() != v_representationExpenseCode) {
-			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_Structure_ID != ?",record.getC_Year_ID(),record.getValue(),record.get_ID());	
+			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_Structure_ID != ? AND IsActive='Y' ",record.getC_Year_ID(),record.getValue(),record.get_ID());
 			if(count>0)
 				throw new AdempiereException("La posición "+record.get_ValueAsString("GH_StructureValue")+" esta repetida para el año "+record.getC_Year().getFiscalYear());
 		}		
@@ -38,7 +38,7 @@ public class ValidateStructureValue extends ModelEventDelegate<X_GH_Structure>{
 		//entonces se podria crear 1 registro adicional para la Combinación Código,Año para el ODG 030
 		//pero solo 1
 		else {
-			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_ExpenseObject_ID = ? AND GH_Structure_ID != ?",record.getC_Year_ID(),record.getValue(),v_representationExpenseCode,record.get_ID());
+			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_ExpenseObject_ID = ? AND GH_Structure_ID != ? AND IsActive='Y'",record.getC_Year_ID(),record.getValue(),v_representationExpenseCode,record.get_ID());
 			if(count>0)
 				throw new AdempiereException("La posición esta repetida para el objeto de gasto 030 para el año "+record.getC_Year().getFiscalYear());			
 		}
