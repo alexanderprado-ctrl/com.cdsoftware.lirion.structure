@@ -10,6 +10,7 @@ import org.compiere.model.MSysConfig;
 import org.compiere.util.DB;
 import org.osgi.service.event.Event;
 
+import com.cdsoftware.lirion.structure.model.X_GH_ExpenseObject;
 import com.cdsoftware.lirion.structure.model.X_GH_Structure;
 
 @EventTopicDelegate
@@ -29,10 +30,14 @@ public class ValidateStructureValue extends ModelEventDelegate<X_GH_Structure>{
 		int count = 0;
 		//Son 2 casos a tomar en cuenta
 		//1) Para un mismo año no puede repetirse la combinación Código,Año
+		//2025-06-13: Se agrega el objeto de gasto en la combinación a validar
+		//1) Para un mismo año no puede repetirse la combinación Código,Año,Objeto de Gasto
+		//TODO: Validar casos especiales de combinación por objeto de gastos de mismo origen
 		if(record.getGH_ExpenseObject_ID() != v_representationExpenseCode) {
-			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_Structure_ID != ? AND IsActive='Y' ",record.getC_Year_ID(),record.getValue(),record.get_ID());
+			String expenseObjectName = record.getGH_ExpenseObject().getName();
+			count = DB.getSQLValue(record.get_TrxName(), "SELECT count(*) FROM GH_Structure WHERE C_Year_ID = ? AND Value = ? AND GH_ExpenseObject_ID = ? AND GH_Structure_ID != ? AND IsActive='Y' ",record.getC_Year_ID(),record.getValue(),record.getGH_ExpenseObject_ID(),record.get_ID());
 			if(count>0)
-				throw new AdempiereException("La posición "+record.get_ValueAsString("GH_StructureValue")+" esta repetida para el año "+record.getC_Year().getFiscalYear());
+				throw new AdempiereException("La posición "+record.get_ValueAsString("GH_StructureValue")+" esta repetida para el año "+record.getC_Year().getFiscalYear()+" Objeto de Gasto "+expenseObjectName);
 		}		
 		//2) La exepción a esta regla es que el objeto de gasto sea gastos de representación (030)
 		//entonces se podria crear 1 registro adicional para la Combinación Código,Año para el ODG 030
