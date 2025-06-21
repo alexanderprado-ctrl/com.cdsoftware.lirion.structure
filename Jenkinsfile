@@ -2,9 +2,9 @@ pipeline {
     agent none
     environment {
         PLUGIN_NAME = "com.cdsoftware.lirion.structure"
-        PLUGIN_DEPENDENCY_1 = "com.cdsoftware.lirion.payroll"
-        PLUGIN_DEPENDENCY_2 = "com.cdsoftware.lirion.act"
-        PLUGIN_DEPENDENCY_3 = "com.cdsoftware.lirion.pluginconfig"
+        PLUGIN_DEPENDENCY_1 = "com.cdsoftware.payroll"
+        PLUGIN_DEPENDENCY_2 = "com.cdsoftware.act"
+        PLUGIN_DEPENDENCY_3 = "com.cdsoftware.pluginconfig"
         PLUGIN_DEPENDENCY_4 = "org.globalqss.idempiere.LCO.detailednames"
         IDEMPIERE_VERSION = "10.0.0"
     }
