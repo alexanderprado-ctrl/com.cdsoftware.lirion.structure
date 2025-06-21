@@ -18,13 +18,13 @@ pipeline {
             }
             steps {
                 dir ('d1'){
-                    checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'bitbucket', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.lirion.payroll.git']])                        
+                    checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'bitbucket', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.payroll.git']])                        
                 }  
                 dir ('d2'){
-                    checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'bitbucket', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.lirion.act.git']])                           
+                    checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'bitbucket', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.act.git']])                           
                 }  
                 dir ('d3'){
-                     checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'bitbucket', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.lirion.pluginconfig.git']])                             
+                     checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'bitbucket', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.pluginconfig.git']])                             
                 }   
                 dir ('d4'){
                     git branch: '10.0.0', url: 'https://github.com/egil0902/globalqss-idempiere-lco.git'             
