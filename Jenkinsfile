@@ -6,6 +6,8 @@ pipeline {
         PLUGIN_DEPENDENCY_2 = "com.cdsoftware.act"
         PLUGIN_DEPENDENCY_3 = "com.cdsoftware.pluginconfig"
         PLUGIN_DEPENDENCY_4 = "org.globalqss.idempiere.LCO.detailednames"
+        PLUGIN_DEPENDENCY_5 = "com.cdsoftware.base"
+        PLUGIN_DEPENDENCY_6 = "com.cdsoftware.location"
         IDEMPIERE_VERSION = "12.0.0"
     }
     stages {
@@ -28,10 +30,16 @@ pipeline {
                 }   
                 dir ('d4'){
                 checkout scmGit(branches: [[name: '*/12.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@bitbucket.org:cdsoftware/globalqss-idempiere-lco.git']])                           
+                }
+                  dir ('d5'){
+                    checkout scmGit(branches: [[name: '*/12.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.base.git']])                           
+                }     
+                dir ('d6'){
+                    checkout scmGit(branches: [[name: '*/12.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.location.git']])                           
                 }                                                                
                 dir('target-platform') {
                     git branch: '10', url: 'https://github.com/ingeint/idempiere-target-platform-plugin.git'
-					sh './plugin-builder build ../${PLUGIN_NAME} ../d1/${PLUGIN_DEPENDENCY_1} ../d2/${PLUGIN_DEPENDENCY_2} ../d3/${PLUGIN_DEPENDENCY_3} ../d4/${PLUGIN_DEPENDENCY_4}'
+					sh './plugin-builder build ../${PLUGIN_NAME} ../d1/${PLUGIN_DEPENDENCY_1} ../d2/${PLUGIN_DEPENDENCY_2} ../d3/${PLUGIN_DEPENDENCY_3} ../d4/${PLUGIN_DEPENDENCY_4} ../d5/${PLUGIN_DEPENDENCY_5} ../d6/${PLUGIN_DEPENDENCY_6}'
                     archiveArtifacts artifacts: "target/${PLUGIN_NAME}-${IDEMPIERE_VERSION}.${BUILD_NUMBER}.jar", fingerprint: true
                     sh 'rm -rf target ../${PLUGIN_NAME}/target '
                 }
