@@ -31,7 +31,8 @@ pipeline {
                     git branch: '10.0.0', url: 'https://github.com/egil0902/globalqss-idempiere-lco.git'             
                 }
                 dir ('d5'){
-                    checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.base.git']])                                                                
+                    checkout scmGit(branches: [[name: '*/10.0.0']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@bitbucket.org:cdsoftware/com.cdsoftware.base.git']]) 
+                }                                                               
                 dir('target-platform') {
                     git branch: '10', url: 'https://github.com/ingeint/idempiere-target-platform-plugin.git'
 					sh './plugin-builder build ../${PLUGIN_NAME} ../${PLUGIN_NAME}.test ../d1/${PLUGIN_DEPENDENCY_1} ../d2/${PLUGIN_DEPENDENCY_2} ../d3/${PLUGIN_DEPENDENCY_3} ../d4/${PLUGIN_DEPENDENCY_4} ../d5/${PLUGIN_DEPENDENCY_5}'
